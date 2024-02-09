@@ -18,8 +18,9 @@ class RecordingService{
     }
 
     recordFile(notificationParams){
-        const filename = notificationParams.filename ? notificationParams.filename : notificationParams.detector + `-${new Date().getTime()}.wav`;
+        const filename = `${notificationParams.detector.name}-${new Date().getTime()}.wav`;
         log.info(`Starting Recording ${filename}`);
+        log.info(notificationParams.detector.name);
 
         const micInputStream = this._micInstance.getAudioStream();
         const outputFileStream = new FileWriter(`./${filename}`, {
